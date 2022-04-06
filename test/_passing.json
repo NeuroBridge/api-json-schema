@@ -1,0 +1,27 @@
+{
+  "operator": "AND",
+  "not": false,
+  "arguments": [
+    {
+      "operator": "AND",
+      "not": false,
+      "arguments": [
+        {
+          "operator": "OR",
+          "not": false,
+          "arguments": ["A", "B"]
+        },
+        {
+          "operator": "OR",
+          "not": false,
+          "arguments": ["C", "D"]
+        }
+      ]
+    },
+    {
+      "operator": "OR",
+      "not": true,
+      "arguments": ["E", "F"]
+    }
+  ]
+}
