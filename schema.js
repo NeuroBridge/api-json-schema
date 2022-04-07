@@ -1,6 +1,5 @@
-export default {
-  '$schema': 'http://json-schema.org/schema#',
-  '$id': 'expression',
+export const schema = {
+  '$id': 'https://neurobridge.org/query.schema.json',
   type: 'object',
   definitions: {
     operator: {
@@ -9,13 +8,6 @@ export default {
     },
     not: {
       type: 'boolean',
-    },
-    expression: {
-      type: 'object',
-      properties: {
-        operator: { '$ref': '#/definitions/operator' },
-        arguments: { '$ref': '#/definitions/arguments' },
-      },      
     },
     arguments: {
       type: 'array',
@@ -27,7 +19,7 @@ export default {
             type: 'string',
           },
           {
-            '$ref': '#/definitions/expression',
+            '$ref': '#',
           },
         ],
       },
@@ -36,6 +28,7 @@ export default {
   required: ['operator', 'not', 'arguments'],
   properties: {
     operator: { '$ref': '#/definitions/operator' },
+    not: { '$ref': '#/definitions/not' },
     arguments: { '$ref': '#/definitions/arguments' },
   },
 }
