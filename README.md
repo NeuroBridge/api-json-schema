@@ -5,38 +5,42 @@ This [Node.js](https://nodejs.org/en/) project is intended to test defining a JS
 An example of such a query follows.
 
 ```
-((A OR B) AND (C OR D)) AND (NOT (E OR F))
+((A OR B) AND (C OR D)) AND (E AND NOT F))
 ```
 
 Encoded in JSON, the above query would look like the following object.
 
 ```
 {
-  "operator":"AND",
-  "not": false,
+  "operator": "AND",
   "arguments": [
     {
       "operator": "AND",
-      "not": false,
       "arguments": [
         {
           "operator": "OR",
-          "not": false,
-          "arguments": ["A", "B"]
+          "arguments": [
+            { "not": false, "value": "A" }, 
+            { "not": false, "value": "B" }
+          ]
         },
         {
           "operator": "OR",
-          "not": false,
-          "arguments": ["C", "D"]
+          "arguments": [
+            { "not": false, "value": "C" }, 
+            { "not": false, "value": "D" }
+          ]
         }
-      ], 
+      ]
     },
     {
-      "operator": "OR",
-      "not": true,
-      "arguments": ["E", "F"]
+      "operator": "AND",
+      "arguments": [
+        { "not": false, "value": "E" },
+        { "not": true, "value": "F" }
+      ]
     }
-  ] 
+  ]
 }
 ```
 
@@ -62,7 +66,7 @@ Found 7 test files.
 
 ## the Schema
 
-The JSON schema is a named export from the file [./schema.js](./schema.js).
+The JSON schema is defined in the file [./schema.json](./schema.js).
 
 ## Running this Script
 
