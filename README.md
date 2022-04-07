@@ -18,7 +18,7 @@ Encoded in JSON, the above query would look like the following object.
     {
       "operator": "AND",
       "not": false,
-      "arguments":[
+      "arguments": [
         {
           "operator": "OR",
           "not": false,
@@ -32,7 +32,7 @@ Encoded in JSON, the above query would look like the following object.
       ], 
     },
     {
-      "operator" :"OR",
+      "operator": "OR",
       "not": true,
       "arguments": ["E", "F"]
     }
@@ -62,7 +62,7 @@ Found 7 test files.
 
 ## the Schema
 
-The JSON schema is the default export from the file [./schema.js](./schema.js).
+The JSON schema is a named export from the file [./schema.js](./schema.js).
 
 ## Running this Script
 
