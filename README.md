@@ -1,6 +1,6 @@
 # NeuroBridge API JSON Schema
 
-This [Node.js](https://nodejs.org/en/) project is intended to test defining a JSON schema for the NeuroBridge API (name?). The use case for this schema is to encode a nested boolean query in JSON.
+This [Node.js](https://nodejs.org/en/) project is intended to test defining a JSON schema to encode a nested boolean query in JSON for the NeuroBridge API (name?).
 
 An example of such a query follows.
 
@@ -40,9 +40,9 @@ Encoded in JSON, the above query would look like the following object.
 }
 ```
 
-This project essentially consists of (1) a schema and (2) a bunch of test payloads, each of which are JSON files in the `test` directory, and (3) a script that validates each test payload. Running this application just validates those JSON files with [Ajv JSON Schema Validator](https://www.npmjs.com/package/ajv).
+This project essentially consists of (1) a schema and (2) a bunch of test payloads, each of which are JSON files in the `test` directory, and (3) a script that validates each test payload. Running this script simply validates those JSON files with [Ajv JSON Schema Validator](https://www.npmjs.com/package/ajv).
 
-A typical output from this project is as follows.
+A typical output from this script is as follows.
 
 ```
 Found 7 test files.
