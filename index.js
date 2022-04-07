@@ -1,14 +1,11 @@
 import path from 'path'
 import { readdir, readFile } from 'fs/promises'
 import Ajv from 'ajv'
-import { schema } from './schema.js'
 
 const ajv = new Ajv({
   allowUnionTypes: true,
   strictTypes: true,
 })
-
-const validate = ajv.compile(schema)
 
 const readJSONFile = async path => JSON.parse(
   await readFile(
@@ -21,6 +18,10 @@ const readJSONFile = async path => JSON.parse(
 console.clear();
 
 (async () => {
+  const schema = await readJSONFile(path.join(process.cwd(), 'schema.json'))
+
+  const validate = ajv.compile(schema)
+
   const testFilenames = await readdir(path.join(process.cwd(), 'test'))
 
   console.log(`Found ${ testFilenames.length } test files.`)
