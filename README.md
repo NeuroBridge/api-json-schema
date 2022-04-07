@@ -40,7 +40,7 @@ Encoded in JSON, the above query would look like the following object.
 }
 ```
 
-This project essentially consists of (1) a schema and (2) a bunch of test payloads, each of which are JSON files in the `test` directory, and (3) a script that validates each test payload. Running this application just validates those JSON files.
+This project essentially consists of (1) a schema and (2) a bunch of test payloads, each of which are JSON files in the `test` directory, and (3) a script that validates each test payload. Running this application just validates those JSON files with [Ajv JSON Schema Validator](https://www.npmjs.com/package/ajv).
 
 A typical output from this project is as follows.
 
