@@ -1,5 +1,7 @@
 {
-  "operator": "XAND",
-  "not": false,
-  "arguments": ["A", "B"]
+  "operator": "XOR",
+  "arguments": [
+    { "not": false, "value": "A" },
+    { "not": true, "value": "B" }
+  ]
 }

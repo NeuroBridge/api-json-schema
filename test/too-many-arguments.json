@@ -1,5 +1,32 @@
 {
   "operator": "AND",
-  "not": false,
-  "arguments": ["A", "B", "C"]
+  "arguments": [
+    {
+      "operator": "AND",
+      "arguments": [
+        {
+          "operator": "OR",
+          "arguments": [
+            { "not": false, "value": "A" }, 
+            { "not": false, "value": "B" }
+          ]
+        },
+        {
+          "operator": "OR",
+          "arguments": [
+            { "not": false, "value": "C" }, 
+            { "not": false, "value": "C" }, 
+            { "not": false, "value": "E" }
+          ]
+        }
+      ]
+    },
+    {
+      "operator": "OR",
+      "arguments": [
+        { "not": false, "value": "F" },
+        { "not": true, "value": "G" }
+      ]
+    }
+  ]
 }
