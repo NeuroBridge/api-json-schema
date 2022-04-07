@@ -1,34 +1,47 @@
 export const schema = {
   '$id': 'https://neurobridge.org/query.schema.json',
+
   type: 'object',
+  
   definitions: {
     operator: {
       type: 'string',
       enum: ['AND', 'OR'],
     },
-    not: {
-      type: 'boolean',
-    },
+    
     arguments: {
       type: 'array',
       minItems: 2,
       maxItems: 2,
-      items: { 
+      items: {
         anyOf: [
-          {
-            type: 'string',
-          },
-          {
-            '$ref': '#',
-          },
+          { '$ref': '#' },
+          { '$ref': '#/definitions/term' },
         ],
+      }
+    },
+    
+    term: {
+      type: 'object',
+      properties: {
+        not: { type: 'boolean' },
+        value: { type: 'string' },
       },
+      required: [
+        'not',
+        'value',
+      ],
+    }
+  },
+  
+  properties: {
+    operator: {
+      '$ref': '#/definitions/operator',
+    },
+    arguments: {
+      '$ref': '#/definitions/arguments',
     },
   },
-  required: ['operator', 'not', 'arguments'],
-  properties: {
-    operator: { '$ref': '#/definitions/operator' },
-    not: { '$ref': '#/definitions/not' },
-    arguments: { '$ref': '#/definitions/arguments' },
-  },
+  
+  required: ['operator', 'arguments'],
 }
