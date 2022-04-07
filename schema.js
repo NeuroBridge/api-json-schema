@@ -1,4 +1,4 @@
-export default {
+export const schema = {
   '$schema': 'http://json-schema.org/schema#',
   '$id': 'expression',
   type: 'object',
