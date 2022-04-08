@@ -1,0 +1,6 @@
+{
+  "description": "too few OR arguments",
+  "or": [
+    "x"
+  ]
+}

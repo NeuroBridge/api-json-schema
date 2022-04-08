@@ -1,0 +1,12 @@
+{
+  "description": "x or (y and z)",
+  "or": [
+    "x",
+    {
+      "and": [
+        "y",
+        "z"
+      ]
+    }
+  ]
+}

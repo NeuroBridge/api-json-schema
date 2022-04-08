@@ -1,0 +1,12 @@
+{
+  "description": "unknown operator (xand)",
+  "or": [
+    "x",
+    {
+      "xand": [
+        "y",
+        "z"
+      ]
+    }
+  ]
+}

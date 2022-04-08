@@ -1,0 +1,6 @@
+{
+  "description": "too few AND arguments",
+  "and": [
+    "x"
+  ]
+}

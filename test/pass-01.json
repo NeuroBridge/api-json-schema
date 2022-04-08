@@ -1,0 +1,12 @@
+{
+  "description": "x and (y and z)",
+  "and": [
+    "x",
+    {
+      "and": [
+        "y",
+        "z"
+      ]
+    }
+  ]
+}

@@ -1,34 +1,66 @@
 {
-  "$id": "https://neurobridge.org/query.schema.json",
-  "type": "object",
+  "$ref": "#/definitions/expression",
   "definitions": {
-    "operator": {
-      "type": "string",
-      "enum": ["AND", "OR"]
+    "expression": {
+      "oneOf": [
+        { "$ref": "#/definitions/term" },
+        { "$ref": "#/definitions/or" },
+        { "$ref": "#/definitions/and" },
+        { "$ref": "#/definitions/not"  }
+      ]
+    },
+    "and": {
+      "type": "object",
+      "properties": {
+        "and": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/definitions/expression"
+          }
+        },
+       "description": { "type": "string" }
+      },
+      "additionalProperties": false,
+      "required": [
+        "and"
+      ]
+    },
+    "or": {
+      "type": "object",
+      "properties": {
+        "or": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/definitions/expression"
+          }
+        },
+       "description": { "type": "string" }
+      },
+      "additionalProperties": false,
+      "required": [
+        "or"
+      ]
     },
     "not": {
-      "type": "boolean"
+      "type": "object",
+      "properties": {
+        "not": {
+          "$ref": "#/definitions/expression"
+        },
+       "description": { "type": "string" }
+      },
+      "additionalProperties": false,
+      "required": [
+        "not"
+      ]
     },
-    "arguments": {
-      "type": "array",
-      "minItems": 2,
-      "maxItems": 2,
-      "items": { 
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "$ref": "#"
-          }
-        ]
-      }
+    "term": {
+      "type": "string",
+      "minLength": 1
     }
-  },
-  "required": ["operator", "not", "arguments"],
-  "properties": {
-    "operator": { "$ref": "#/definitions/operator" },
-    "not": { "$ref": "#/definitions/not" },
-    "arguments": { "$ref": "#/definitions/arguments" }
   }
 }
