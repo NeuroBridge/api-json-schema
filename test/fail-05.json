@@ -1,5 +1,5 @@
 {
-  "description": "unknown operator (xand)",
+  "description": "x or (y xand z)",
   "or": [
     "x",
     {

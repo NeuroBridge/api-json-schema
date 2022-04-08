@@ -1,5 +1,5 @@
 {
-  "description": "too few AND arguments",
+  "description": "x and",
   "and": [
     "x"
   ]

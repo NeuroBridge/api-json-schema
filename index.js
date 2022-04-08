@@ -28,16 +28,22 @@ console.clear();
 
   const promises = testFilenames.map(async filename => await readJSONFile(path.join(process.cwd(), 'test', filename)))
 
-  Promise.all(promises).then(data => {
-    let results = []
-    data.forEach((json, i) => {
-      results = [...results, {
-        file: testFilenames[i],
-        valid: validate(json),
-      }]
+  Promise.all(promises)
+    .then(data => {
+      let results = []
+      data.forEach((json, i) => {
+        const { description, ...queryObject } = json
+        const validationResult = {
+          file: testFilenames[i],
+          passing: validate(queryObject),
+          description: description,
+          query: JSON.stringify(queryObject),
+        }
+        results = [...results, validationResult]
+      })
+      console.table(results)
     })
-    console.table(results)
-  }).catch(console.error)
+    .catch(console.error)
 
 
 })();

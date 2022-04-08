@@ -35,19 +35,19 @@ A typical output from this script is as follows.
 
 ```
 Found 9 test files.
-┌─────────┬────────────────┬───────┐
-│ (index) │      file      │ valid │
-├─────────┼────────────────┼───────┤
-│    0    │ 'fail-01.json' │ false │
-│    1    │ 'fail-02.json' │ false │
-│    2    │ 'fail-03.json' │ false │
-│    3    │ 'fail-04.json' │ false │
-│    4    │ 'fail-05.json' │ false │
-│    5    │ 'pass-01.json' │ true  │
-│    6    │ 'pass-02.json' │ true  │
-│    7    │ 'pass-03.json' │ true  │
-│    8    │ 'pass-04.json' │ true  │
-└─────────┴────────────────┴───────┘
+┌─────────┬────────────────┬─────────┬─────────────────────────────┬───────────────────────────────────────────────────────┐
+│ (index) │      file      │ passing │         description         │                         query                         │
+├─────────┼────────────────┼─────────┼─────────────────────────────┼───────────────────────────────────────────────────────┤
+│    0    │ 'fail-01.json' │  false  │           'x and'           │                    '{"and":["x"]}'                    │
+│    1    │ 'fail-02.json' │  false  │           'x or'            │                    '{"or":["x"]}'                     │
+│    2    │ 'fail-03.json' │  false  │       'x and y and z'       │                '{"and":["x","y","z"]}'                │
+│    3    │ 'fail-04.json' │  false  │        'x or y or z'        │                '{"or":["x","y","z"]}'                 │
+│    4    │ 'fail-05.json' │  false  │      'x or (y xand z)'      │           '{"or":["x",{"xand":["y","z"]}]}'           │
+│    5    │ 'pass-01.json' │  true   │      'x and (y and z)'      │           '{"and":["x",{"and":["y","z"]}]}'           │
+│    6    │ 'pass-02.json' │  true   │      'x or (y and z)'       │           '{"or":["x",{"and":["y","z"]}]}'            │
+│    7    │ 'pass-03.json' │  true   │    'x or (y and not z)'     │       '{"or":["x",{"and":["y",{"not":"z"}]}]}'        │
+│    8    │ 'pass-04.json' │  true   │ '(a or b) and (c or not d)' │ '{"and":[{"or":["a","b"]},{"or":["c",{"not":"d"}]}]}' │
+└─────────┴────────────────┴─────────┴─────────────────────────────┴───────────────────────────────────────────────────────┘
 ```
 
 ## the Schema

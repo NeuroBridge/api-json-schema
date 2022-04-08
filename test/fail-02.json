@@ -1,5 +1,5 @@
 {
-  "description": "too few OR arguments",
+  "description": "x or",
   "or": [
     "x"
   ]
