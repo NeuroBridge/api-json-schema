@@ -1,7 +1,6 @@
 import path from 'path'
 import { readdir, readFile } from 'fs/promises'
 import Ajv from 'ajv'
-// import { schema } from './schema.js'
 
 const ajv = new Ajv({
   allowUnionTypes: true,
