@@ -2,33 +2,39 @@
   "$id": "https://neurobridge.org/query.schema.json",
   "type": "object",
   "definitions": {
+    "term": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expression": {
+      "oneOf": [
+        { "$ref": "#/definitions/term" },
+        { "$ref": "#" }
+      ]
+    },
     "operator": {
       "type": "string",
-      "enum": ["AND", "OR"]
-    },
-    "not": {
-      "type": "boolean"
+      "enum": ["and", "or", "not"]
     },
     "arguments": {
       "type": "array",
-      "minItems": 2,
-      "maxItems": 2,
       "items": { 
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "$ref": "#"
+        "$ref": "#/definitions/expression"
+      },
+      "if": {
+        "properties": {
+          "operator": {
+            "pattern": "^(and|or)$"
           }
-        ]
-      }
+        }
+      },
+      "then": { "minItems": 2, "maxItems": 2 },
+      "else": { "minItems": 1, "maxItems": 1 }
     }
   },
-  "required": ["operator", "not", "arguments"],
+  "required": ["operator", "arguments"],
   "properties": {
     "operator": { "$ref": "#/definitions/operator" },
-    "not": { "$ref": "#/definitions/not" },
     "arguments": { "$ref": "#/definitions/arguments" }
   }
 }
