@@ -3,8 +3,7 @@ import { readdir, readFile } from 'fs/promises'
 import Ajv from 'ajv'
 
 const ajv = new Ajv({
-  allowUnionTypes: true,
-  strictTypes: true,
+  // strictTypes: true,
 })
 
 const readJSONFile = async path => JSON.parse(
@@ -22,22 +21,22 @@ console.clear();
 
   const validate = ajv.compile(schema)
 
-  // const testFilenames = await readdir(path.join(process.cwd(), 'test'))
+  const testFilenames = await readdir(path.join(process.cwd(), 'test'))
 
-  // console.log(`Found ${ testFilenames.length } test files.`)
+  console.log(`Found ${ testFilenames.length } test files.`)
 
-  // const promises = testFilenames.map(async filename => await readJSONFile(path.join(process.cwd(), 'test', filename)))
+  const promises = testFilenames.map(async filename => await readJSONFile(path.join(process.cwd(), 'test', filename)))
 
-  // Promise.all(promises).then(data => {
-  //   let results = []
-  //   data.forEach((json, i) => {
-  //     results = [...results, {
-  //       file: testFilenames[i],
-  //       valid: validate(json),
-  //     }]
-  //   })
-  //   console.table(results)
-  // }).catch(console.error)
+  Promise.all(promises).then(data => {
+    let results = []
+    data.forEach((json, i) => {
+      results = [...results, {
+        file: testFilenames[i],
+        valid: validate(json),
+      }]
+    })
+    console.table(results)
+  }).catch(console.error)
 
 
 })();

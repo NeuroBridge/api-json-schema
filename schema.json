@@ -20,21 +20,38 @@
       "type": "array",
       "items": { 
         "$ref": "#/definitions/expression"
-      },
-      "if": {
-        "properties": {
-          "operator": {
-            "pattern": "^(and|or)$"
-          }
-        }
-      },
-      "then": { "minItems": 2, "maxItems": 2 },
-      "else": { "minItems": 1, "maxItems": 1 }
+      }
     }
   },
   "required": ["operator", "arguments"],
   "properties": {
     "operator": { "$ref": "#/definitions/operator" },
     "arguments": { "$ref": "#/definitions/arguments" }
+  },
+  "if": {
+    "properties": {
+      "operator": {
+        "type": "string",
+        "pattern": "^(and|or)$"
+      }        
+    }
+  },
+  "then": {
+    "properties": {
+      "arguments": {
+        "minItems": 2,
+        "maxItems": 2,
+        "type": "array"
+      }
+    }
+  },
+  "else": {
+    "properties": {
+      "arguments": {
+        "minItems": 1,
+        "maxItems": 1,
+        "type": "array"
+      }
+    }
   }
 }
