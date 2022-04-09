@@ -1,5 +1,5 @@
 {
-  "description": "(a or b) and (c or not d)",
+  "description": "(a or b) and (c or (not d))",
   "and": [
     {
       "or": [ "a", "b" ]
