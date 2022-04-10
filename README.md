@@ -5,38 +5,30 @@ This [Node.js](https://nodejs.org/en/) project is intended to test defining a JS
 An example of such a query follows.
 
 ```
-((A OR B) AND (C OR D)) AND (NOT (E OR F))
+((A and B) or (C or (not D))
 ```
 
 Encoded in JSON, the above query would look like the following object.
 
 ```
 {
-  "operator":"AND",
-  "not": false,
+  "operator": "and",
   "arguments": [
     {
-      "operator": "AND",
-      "not": false,
-      "arguments": [
-        {
-          "operator": "OR",
-          "not": false,
-          "arguments": ["A", "B"]
-        },
-        {
-          "operator": "OR",
-          "not": false,
-          "arguments": ["C", "D"]
-        }
-      ], 
+      "operator": "or",
+      "arguments": ["A", "B"]
     },
     {
-      "operator": "OR",
-      "not": true,
-      "arguments": ["E", "F"]
+      "operator": "or",
+      "arguments": [
+        "C",
+        {
+          "operator": "not",
+          "arguments": ["D"]
+        }
+      ]
     }
-  ] 
+  ]
 }
 ```
 
@@ -45,19 +37,15 @@ This project essentially consists of (1) a schema and (2) a bunch of test payloa
 A typical output from this script is as follows.
 
 ```
-Found 7 test files.
-┌─────────┬───────────────────────────┬───────┐
-│ (index) │           file            │ valid │
-├─────────┼───────────────────────────┼───────┤
-│    0    │      '_passing.json'      │ true  │
-│    1    │ 'missing-arguments.json'  │ false │
-│    2    │    'missing-not.json'     │ false │
-│    3    │  'missing-operator.json'  │ false │
-│    4    │ 'too-few-arguments.json'  │ false │
-│    5    │ 'too-many-arguments.json' │ false │
-│    6    │  'unknown-operator.json'  │ false │
-└─────────┴───────────────────────────┴───────┘
-
+Found 4 test files.
+┌─────────┬──────────────────────────┬───────┐
+│ (index) │           file           │ valid │
+├─────────┼──────────────────────────┼───────┤
+│    0    │     '_passing.json'      │ true  │
+│    1    │ 'missing-arguments.json' │ false │
+│    2    │ 'missing-operator.json'  │ false │
+│    3    │ 'unknown-operator.json'  │ false │
+└─────────┴──────────────────────────┴───────┘
 ```
 
 ## the Schema

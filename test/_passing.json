@@ -1,12 +1,23 @@
 {
   "operator": "and",
   "arguments": [
-    "A",
     {
       "operator": "or",
       "arguments": [
-        "B",
-        "C"
+        "A",
+        "B"
+      ]
+    },
+    {
+      "operator": "or",
+      "arguments": [
+        "C",
+        {
+          "operator": "not",
+          "arguments": [
+            "D"
+          ]
+        }
       ]
     }
   ]
