@@ -1,4 +1,12 @@
 {
-  "not": false,
-  "arguments": ["A", "B"]
+  "operator": "and",
+  "arguments": [
+    "A",
+    {
+      "arguments": [
+        "B",
+        "C"
+      ]
+    }
+  ]
 }

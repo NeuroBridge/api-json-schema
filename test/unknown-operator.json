@@ -1,5 +1,13 @@
 {
-  "operator": "XAND",
-  "not": false,
-  "arguments": ["A", "B"]
+  "operator": "and",
+  "arguments": [
+    "A",
+    {
+      "operator": "xor",
+      "arguments": [
+        "B",
+        "C"
+      ]
+    }
+  ]
 }

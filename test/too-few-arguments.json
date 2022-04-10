@@ -1,5 +1,6 @@
 {
-  "operator": "AND",
-  "not": false,
-  "arguments": ["A"]
+  "operator": "and",
+  "arguments": [
+    "A"
+  ]
 }
