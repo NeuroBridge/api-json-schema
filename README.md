@@ -5,7 +5,7 @@ This [Node.js](https://nodejs.org/en/) project is intended to test defining a JS
 An example of such a query follows.
 
 ```
-(a or b) and (c or not d)
+(a or b) and (c or (not d))
 ```
 
 Encoded in JSON, the above query would look like the following object.
@@ -34,20 +34,19 @@ This project essentially consists of (1) a schema and (2) a bunch of test payloa
 A typical output from this script is as follows.
 
 ```
-Found 9 test files.
-┌─────────┬────────────────┬─────────┬─────────────────────────────┬───────────────────────────────────────────────────────┐
-│ (index) │      file      │ passing │         description         │                         query                         │
-├─────────┼────────────────┼─────────┼─────────────────────────────┼───────────────────────────────────────────────────────┤
-│    0    │ 'fail-01.json' │  false  │           'x and'           │                    '{"and":["x"]}'                    │
-│    1    │ 'fail-02.json' │  false  │           'x or'            │                    '{"or":["x"]}'                     │
-│    2    │ 'fail-03.json' │  false  │       'x and y and z'       │                '{"and":["x","y","z"]}'                │
-│    3    │ 'fail-04.json' │  false  │        'x or y or z'        │                '{"or":["x","y","z"]}'                 │
-│    4    │ 'fail-05.json' │  false  │      'x or (y xand z)'      │           '{"or":["x",{"xand":["y","z"]}]}'           │
-│    5    │ 'pass-01.json' │  true   │      'x and (y and z)'      │           '{"and":["x",{"and":["y","z"]}]}'           │
-│    6    │ 'pass-02.json' │  true   │      'x or (y and z)'       │           '{"or":["x",{"and":["y","z"]}]}'            │
-│    7    │ 'pass-03.json' │  true   │    'x or (y and not z)'     │       '{"or":["x",{"and":["y",{"not":"z"}]}]}'        │
-│    8    │ 'pass-04.json' │  true   │ '(a or b) and (c or not d)' │ '{"and":[{"or":["a","b"]},{"or":["c",{"not":"d"}]}]}' │
-└─────────┴────────────────┴─────────┴─────────────────────────────┴───────────────────────────────────────────────────────┘
+Found 8 test files.
+┌─────────┬──────────────────────────────┬─────────┬───────────────────────────────┐
+│ (index) │             file             │ passing │          description          │
+├─────────┼──────────────────────────────┼─────────┼───────────────────────────────┤
+│    0    │  'fail-and-single-arg.json'  │  false  │            'x and'            │
+│    1    │  'fail-and-three-args.json'  │  false  │        'x and y and z'        │
+│    2    │  'fail-or-single-arg.json'   │  false  │            'x or'             │
+│    3    │  'fail-or-three-args.json'   │  false  │         'x or y or z'         │
+│    4    │ 'fail-unknown-operator.json' │  false  │       'x or (y xand z)'       │
+│    5    │    'pass-and-simple.json'    │  true   │           'a and b'           │
+│    6    │     'pass-complex.json'      │  true   │ '(a or b) and (c or (not d))' │
+│    7    │    'pass-or-simple.json'     │  true   │           'a or b'            │
+└─────────┴──────────────────────────────┴─────────┴───────────────────────────────┘
 ```
 
 ## the Schema

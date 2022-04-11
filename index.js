@@ -40,20 +40,10 @@ console.clear();
       })
       console.table(results.map(result => ({
         file: result.file,
-        description: result.description,
         passing: result.passing,
+        description: result.description,
         // queryObject: JSON.stringify(result.queryObject)
       })))
-      results.forEach(result => {
-        if (result.passing) {
-          console.log('description:', result.description)
-          console.log(' obj -> qs:', objectToQuerystring(result.queryObject))
-          console.log('            = result.description?', objectToQuerystring(result.queryObject) === `(${result.description})`)
-          console.log(' qs -> obj:', querystringToObject(result.description))
-          console.log('            = result.queryJson?', querystringToObject(result.description) === `(${result.queryJson})`)
-          console.log()
-        }
-      })
     })
     .catch(console.error)
 
