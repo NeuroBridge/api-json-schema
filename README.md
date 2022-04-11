@@ -5,59 +5,48 @@ This [Node.js](https://nodejs.org/en/) project is intended to test defining a JS
 An example of such a query follows.
 
 ```
-((A OR B) AND (C OR D)) AND (NOT (E OR F))
+(a or b) and (c or (not d))
 ```
 
 Encoded in JSON, the above query would look like the following object.
 
 ```
 {
-  "operator":"AND",
-  "not": false,
-  "arguments": [
+  "description": "(a or b) and (c or not d)",
+  "and": [
     {
-      "operator": "AND",
-      "not": false,
-      "arguments": [
-        {
-          "operator": "OR",
-          "not": false,
-          "arguments": ["A", "B"]
-        },
-        {
-          "operator": "OR",
-          "not": false,
-          "arguments": ["C", "D"]
-        }
-      ], 
+      "or": [ "a", "b" ]
     },
     {
-      "operator": "OR",
-      "not": true,
-      "arguments": ["E", "F"]
+      "or": [
+        "c",
+        { "not": "d" }
+      ]
     }
-  ] 
+  ]
 }
 ```
+
+_(Note: `description` is an optional property on all expression objects.)_
 
 This project essentially consists of (1) a schema and (2) a bunch of test payloads, each of which are JSON files in the `test` directory, and (3) a script that validates each test payload. Running this script simply validates those JSON files with [Ajv JSON Schema Validator](https://www.npmjs.com/package/ajv).
 
 A typical output from this script is as follows.
 
 ```
-Found 7 test files.
-┌─────────┬───────────────────────────┬───────┐
-│ (index) │           file            │ valid │
-├─────────┼───────────────────────────┼───────┤
-│    0    │      '_passing.json'      │ true  │
-│    1    │ 'missing-arguments.json'  │ false │
-│    2    │    'missing-not.json'     │ false │
-│    3    │  'missing-operator.json'  │ false │
-│    4    │ 'too-few-arguments.json'  │ false │
-│    5    │ 'too-many-arguments.json' │ false │
-│    6    │  'unknown-operator.json'  │ false │
-└─────────┴───────────────────────────┴───────┘
-
+Found 8 test files.
+┌─────────┬──────────────────────────────┬─────────┬───────────────────────────────┐
+│ (index) │             file             │ passing │          description          │
+├─────────┼──────────────────────────────┼─────────┼───────────────────────────────┤
+│    0    │  'fail-and-single-arg.json'  │  false  │            'x and'            │
+│    1    │  'fail-and-three-args.json'  │  false  │        'x and y and z'        │
+│    2    │  'fail-or-single-arg.json'   │  false  │            'x or'             │
+│    3    │  'fail-or-three-args.json'   │  false  │         'x or y or z'         │
+│    4    │ 'fail-unknown-operator.json' │  false  │       'x or (y xand z)'       │
+│    5    │    'pass-and-simple.json'    │  true   │           'a and b'           │
+│    6    │     'pass-complex.json'      │  true   │ '(a or b) and (c or (not d))' │
+│    7    │    'pass-or-simple.json'     │  true   │           'a or b'            │
+└─────────┴──────────────────────────────┴─────────┴───────────────────────────────┘
 ```
 
 ## the Schema

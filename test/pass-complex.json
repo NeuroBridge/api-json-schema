@@ -1,0 +1,14 @@
+{
+  "description": "(a or b) and (c or (not d))",
+  "and": [
+    {
+      "or": [ "a", "b" ]
+    },
+    {
+      "or": [
+        "c",
+        { "not": "d" }
+      ]
+    }
+  ]
+}

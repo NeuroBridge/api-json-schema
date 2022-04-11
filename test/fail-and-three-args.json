@@ -1,0 +1,8 @@
+{
+  "description": "x and y and z",
+  "and": [
+    "x",
+    "y",
+    "z"
+  ]
+}

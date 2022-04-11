@@ -1,5 +1,0 @@
-{
-  "operator": "XAND",
-  "not": false,
-  "arguments": ["A", "B"]
-}

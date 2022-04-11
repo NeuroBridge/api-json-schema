@@ -1,18 +1,13 @@
 import path from 'path'
 import { readdir, readFile } from 'fs/promises'
 import Ajv from 'ajv'
-// import { schema } from './schema.js'
+import {
+  readJSONFile,
+  objectToQuerystring,
+  querystringToObject,
+} from './utils/index.js'
 
-const ajv = new Ajv({
-  allowUnionTypes: true,
-  strictTypes: true,
-})
-
-const readJSONFile = async path => JSON.parse(
-  await readFile(
-    new URL(path, import.meta.url)
-  )
-)
+const ajv = new Ajv()
 
 //
 
@@ -29,16 +24,27 @@ console.clear();
 
   const promises = testFilenames.map(async filename => await readJSONFile(path.join(process.cwd(), 'test', filename)))
 
-  Promise.all(promises).then(data => {
-    let results = []
-    data.forEach((json, i) => {
-      results = [...results, {
-        file: testFilenames[i],
-        valid: validate(json),
-      }]
+  Promise.all(promises)
+    .then(data => {
+      let results = []
+      data.forEach((json, i) => {
+        const { description, ...queryObject } = json
+        const validationResult = {
+          file: testFilenames[i],
+          passing: validate(queryObject),
+          description: description,
+          queryObject: queryObject,
+          queryJson: JSON.stringify(queryObject),
+        }
+        results = [...results, validationResult]
+      })
+      console.table(results.map(result => ({
+        file: result.file,
+        passing: result.passing,
+        description: result.description,
+        // queryObject: JSON.stringify(result.queryObject)
+      })))
     })
-    console.table(results)
-  }).catch(console.error)
-
+    .catch(console.error)
 
 })();

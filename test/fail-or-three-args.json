@@ -1,0 +1,8 @@
+{
+  "description": "x or y or z",
+  "or": [
+    "x",
+    "y",
+    "z"
+  ]
+}
