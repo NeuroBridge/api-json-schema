@@ -1,7 +1,9 @@
 {
   "description": "a and b",
-  "and": [
-    "a",
-    "b"
-  ]
+  "expression": {
+    "and": [
+      "a",
+      "b"
+    ]
+  }
 }

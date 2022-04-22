@@ -1,14 +1,7 @@
 {
-  "$ref": "#/definitions/expression",
+  "type": "object",
   "definitions": {
-    "expression": {
-      "oneOf": [
-        { "$ref": "#/definitions/term" },
-        { "$ref": "#/definitions/or" },
-        { "$ref": "#/definitions/and" },
-        { "$ref": "#/definitions/not"  }
-      ]
-    },
+    "description": { "type": "string" },
     "and": {
       "type": "object",
       "properties": {
@@ -19,8 +12,7 @@
           "items": {
             "$ref": "#/definitions/expression"
           }
-        },
-       "description": { "type": "string" }
+        }
       },
       "additionalProperties": false,
       "required": [
@@ -37,8 +29,7 @@
           "items": {
             "$ref": "#/definitions/expression"
           }
-        },
-       "description": { "type": "string" }
+        }
       },
       "additionalProperties": false,
       "required": [
@@ -50,8 +41,7 @@
       "properties": {
         "not": {
           "$ref": "#/definitions/expression"
-        },
-       "description": { "type": "string" }
+        }
       },
       "additionalProperties": false,
       "required": [
@@ -61,6 +51,21 @@
     "term": {
       "type": "string",
       "minLength": 1
+    },
+    "expression": {
+      "oneOf": [
+        { "$ref": "#/definitions/term" },
+        { "$ref": "#/definitions/or" },
+        { "$ref": "#/definitions/and" },
+        { "$ref": "#/definitions/not"  }
+      ]
     }
-  }
+  },
+  "properties": {
+    "description": { "$ref": "#/definitions/description" },
+    "expression": { "$ref": "#/definitions/expression" }
+  },
+  "required": [
+    "expression"
+  ]
 }

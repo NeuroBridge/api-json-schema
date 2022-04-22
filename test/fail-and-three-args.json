@@ -1,8 +1,10 @@
 {
   "description": "x and y and z",
-  "and": [
-    "x",
-    "y",
-    "z"
-  ]
+  "expression": {
+    "and": [
+      "x",
+      "y",
+      "z"
+    ]
+  }
 }

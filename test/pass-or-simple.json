@@ -1,7 +1,9 @@
 {
   "description": "a or b",
-  "or": [
-    "a",
-    "b"
-  ]
+  "expression": {
+    "or": [
+      "a",
+      "b"
+    ]
+  }
 }

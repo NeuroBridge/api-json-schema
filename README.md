@@ -13,17 +13,19 @@ Encoded in JSON, the above query would look like the following object.
 ```
 {
   "description": "(a or b) and (c or not d)",
-  "and": [
-    {
-      "or": [ "a", "b" ]
-    },
-    {
-      "or": [
-        "c",
-        { "not": "d" }
-      ]
-    }
-  ]
+  "expression": {
+    "and": [
+      {
+        "or": [ "a", "b" ]
+      },
+      {
+        "or": [
+          "c",
+          { "not": "d" }
+        ]
+      }
+    ]
+  }
 }
 ```
 

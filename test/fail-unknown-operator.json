@@ -1,12 +1,14 @@
 {
   "description": "x or (y xand z)",
-  "or": [
-    "x",
-    {
-      "xand": [
-        "y",
-        "z"
-      ]
-    }
-  ]
+  "expression": {
+    "or": [
+      "x",
+      {
+        "xand": [
+          "y",
+          "z"
+        ]
+      }
+    ]
+  }
 }
